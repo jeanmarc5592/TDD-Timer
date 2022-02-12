@@ -1,11 +1,9 @@
 import './App.css';
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
       TIMER APP
     </div>
   );
 }
-
-export default App;
