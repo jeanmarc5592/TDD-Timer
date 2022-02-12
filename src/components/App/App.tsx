@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import './App.css';
+import styles from './App.module.css';
 import { TimerDisplay } from '../TimerDisplay';
 
 export const App = () => {
@@ -27,33 +27,35 @@ export const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className={styles.appContainer}>
       <TimerDisplay />
-      {isTimerRunning && (
-        <>
-          <button aria-label="pause-button" onClick={clickPause}>
-            <span className="material-icons">pause</span>
-          </button>
-          <button aria-label="stop-button" onClick={clickStop}>
-            <span className="material-icons">stop</span>
-          </button>
-        </>
-      )}
-      {isTimerStopped && (
-        <button aria-label="play-button" onClick={clickPlay}>
-          <span className="material-icons">play_arrow</span>
-        </button>
-      )}
-      {isTimerPaused && (
-        <>
+      <div className={styles.buttonContainer}>
+        {isTimerRunning && (
+          <>
+            <button aria-label="pause-button" onClick={clickPause}>
+              <span className="material-icons">pause</span>
+            </button>
+            <button aria-label="stop-button" onClick={clickStop}>
+              <span className="material-icons">stop</span>
+            </button>
+          </>
+        )}
+        {isTimerStopped && (
           <button aria-label="play-button" onClick={clickPlay}>
             <span className="material-icons">play_arrow</span>
           </button>
-          <button aria-label="stop-button" onClick={clickStop}>
-            <span className="material-icons">stop</span>
-          </button>
-        </>
-      )}
+        )}
+        {isTimerPaused && (
+          <>
+            <button aria-label="play-button" onClick={clickPlay}>
+              <span className="material-icons">play_arrow</span>
+            </button>
+            <button aria-label="stop-button" onClick={clickStop}>
+              <span className="material-icons">stop</span>
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 }
