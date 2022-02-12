@@ -10,16 +10,20 @@ export const App = () => {
     setIsTimerRunning(true);
   };
 
+  const clickStop = () => {
+    setIsTimerRunning(false);
+  };
+
   return (
     <div className="App">
       <TimerDisplay />
       {isTimerRunning ? (
         <>
-          <button aria-label="pause-button"></button>
-          <button aria-label="stop-button"></button>
+          <button aria-label="pause-button">pause</button>
+          <button aria-label="stop-button" onClick={clickStop}>stop</button>
         </>
       ) : (
-        <button aria-label="play-button" onClick={clickPlay}></button>
+        <button aria-label="play-button" onClick={clickPlay}>play</button>
       )}
     </div>
   );

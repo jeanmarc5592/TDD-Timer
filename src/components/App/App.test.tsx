@@ -25,4 +25,17 @@ describe("App", () => {
         expect(screen.getByRole("button", { name: "pause-button" })).toBeInTheDocument();
         expect(screen.getByRole("button", { name: "stop-button" })).toBeInTheDocument();
     });
+
+    it("renders only Play Button when clicking Stop Button", () => {
+        render(<App />);
+        // Click "Play" first to show "Pause" & "Stop"
+        const playButtonElement = screen.getByRole("button", { name: "play-button" });
+        userEvent.click(playButtonElement);
+        // Click "Stop"
+        const stopButtonElement = screen.getByRole("button", { name: "stop-button" });
+        userEvent.click(stopButtonElement);
+        expect(screen.getByRole("button", { name: "play-button" })).toBeInTheDocument();
+        expect(screen.queryByRole("button", { name: "pause-button" })).not.toBeInTheDocument();
+        expect(screen.queryByRole("button", { name: "stop-button" })).not.toBeInTheDocument();
+    });
 });
