@@ -1,0 +1,19 @@
+.displayContainer {
+    display: flex;
+}
+
+.timeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeValue {
+    font-size: 5rem;
+    margin: 0 .5rem;
+}
+
+.timeUnit {
+    font-size: 1.25rem;
+    color: #808EA6;
+}
