@@ -31,17 +31,27 @@ export const App = () => {
       <TimerDisplay />
       {isTimerRunning && (
         <>
-          <button aria-label="pause-button" onClick={clickPause}>pause</button>
-          <button aria-label="stop-button" onClick={clickStop}>stop</button>
+          <button aria-label="pause-button" onClick={clickPause}>
+            <span className="material-icons">pause</span>
+          </button>
+          <button aria-label="stop-button" onClick={clickStop}>
+            <span className="material-icons">stop</span>
+          </button>
         </>
       )}
       {isTimerStopped && (
-        <button aria-label="play-button" onClick={clickPlay}>play</button>
+        <button aria-label="play-button" onClick={clickPlay}>
+          <span className="material-icons">play_arrow</span>
+        </button>
       )}
       {isTimerPaused && (
         <>
-          <button aria-label="play-button" onClick={clickPlay}>play</button>
-          <button aria-label="stop-button" onClick={clickStop}>stop</button>
+          <button aria-label="play-button" onClick={clickPlay}>
+            <span className="material-icons">play_arrow</span>
+          </button>
+          <button aria-label="stop-button" onClick={clickStop}>
+            <span className="material-icons">stop</span>
+          </button>
         </>
       )}
     </div>
