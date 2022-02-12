@@ -3,10 +3,18 @@ import { useState } from 'react';
 import styles from './App.module.css';
 import { TimerDisplay } from '../TimerDisplay';
 
+const initialTimerValues = {
+  hours: "00",
+  minutes: "00",
+  seconds: "00"
+};
+
 export const App = () => {
+  // TODO: Refactor --> implement useReducer
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [isTimerStopped, setIsTimerStopped] = useState(true);
   const [isTimerPaused, setIsTimerPaused] = useState(false);
+  const [timerValues, setTimerValues] = useState(initialTimerValues);
 
   const clickPlay = () => {
     setIsTimerStopped(false);
@@ -28,7 +36,7 @@ export const App = () => {
 
   return (
     <div className={styles.appContainer}>
-      <TimerDisplay />
+      <TimerDisplay {...timerValues} />
       <div className={styles.buttonContainer}>
         {isTimerRunning && (
           <>
