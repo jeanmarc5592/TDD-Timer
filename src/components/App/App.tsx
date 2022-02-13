@@ -39,6 +39,13 @@ export const App = () => {
     }
   }, [isTimerPaused]);
 
+  useEffect(() => {
+    if (isTimerStopped) {
+      clearTimer();
+      setTimerValues({ ...initialTimerValues });
+    }
+  }, [isTimerStopped]);
+
   const clickPlay = () => {
     setIsTimerStopped(false);
     setIsTimerPaused(false);
