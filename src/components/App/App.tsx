@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import styles from './App.module.css';
 import { TimerDisplay } from '../TimerDisplay';
 
 const initialTimerValues = {
-  hours: "00",
-  minutes: "00",
-  seconds: "00"
+  hours: 0,
+  minutes: 0,
+  seconds: 0
 };
 
 export const App = () => {
@@ -15,6 +15,23 @@ export const App = () => {
   const [isTimerStopped, setIsTimerStopped] = useState(true);
   const [isTimerPaused, setIsTimerPaused] = useState(false);
   const [timerValues, setTimerValues] = useState(initialTimerValues);
+  let timerId = useRef<null | number>(null);
+
+  const clearTimer = () => {
+    if (timerId.current) {
+      window.clearInterval(timerId.current);
+    }
+  }
+
+  useEffect(() => {
+    if (isTimerRunning) {
+      timerId.current = window.setInterval(() => {
+        setTimerValues(currState => ({ ...currState, seconds: currState.seconds++ }));
+      }, 1000);
+    }
+
+    return () => clearTimer();
+  }, [isTimerRunning]);
 
   const clickPlay = () => {
     setIsTimerStopped(false);
