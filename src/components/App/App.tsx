@@ -46,6 +46,16 @@ export const App = () => {
     }
   }, [isTimerStopped]);
 
+  useEffect(() => {
+    if (timerValues.seconds === 60) {
+      setTimerValues(currState => ({ ...currState, minutes: currState.minutes++, seconds: 0 }));
+    }
+
+    if (timerValues.minutes === 60) {
+      setTimerValues(currState => ({ ...currState, hours: currState.hours++, minutes: 0 }));
+    }
+  }, [timerValues]);
+
   const clickPlay = () => {
     setIsTimerStopped(false);
     setIsTimerPaused(false);
